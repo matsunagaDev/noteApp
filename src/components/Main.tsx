@@ -1,5 +1,7 @@
 import './Main.css';
 import type { Note } from '../types/Note.ts';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const Main = ({
   activeNote,
@@ -34,7 +36,9 @@ const Main = ({
       </div>
       <div className="app-main-note-preview">
         <h1 className="preview-title">{activeNote.title}</h1>
-        <div className="markdown-preview">{activeNote.content}</div>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {activeNote.content}
+        </ReactMarkdown>
       </div>
     </div>
   );
