@@ -22,9 +22,13 @@ function App() {
   };
 
   const onDeleteNote = (id: string) => {
-    const fileterNotes = notes.filter((note) => note.id !== id);
-    setNotes(fileterNotes);
+    const filterNotes = notes.filter((note) => note.id !== id);
+    setNotes(filterNotes);
     console.log(`{id}のノートが削除されました`);
+  };
+
+  const getActiveNote = (): Note | undefined => {
+    return notes.find((note) => note.id === activeNote);
   };
 
   return (
@@ -36,7 +40,7 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main />
+      <Main activeNote={getActiveNote()} />
     </div>
   );
 }
